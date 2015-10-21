@@ -82,7 +82,7 @@ public:
 class SchedulingPolicyService : public BinderService<SchedulingPolicyService>, public BnSchedulingPolicyService
 {
 public:
-    static const char *getServiceName() { return "power"; }
+    static const char *getServiceName() { return "scheduling_policy"; }
 
     virtual int requestPriority(int pid, int tid, int prio) { return 0; }
 };
