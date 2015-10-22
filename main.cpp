@@ -54,18 +54,33 @@ class PowerManager : public BinderService<PowerManager>, public BnPowerManager
 {
 public:
     static const char *getServiceName() { return "power"; }
-
+    // Used in 4.4 
+    virtual status_t acquireWakeLock(const sp<IBinder>& lock, int flags, const String16& tag, const String16& packageName, int ws) { return OK; }
+    // Used in 5.0  
     virtual status_t acquireWakeLock(const sp<IBinder>& lock, int flags, const String16& tag, const String16& packageName, int ws, const String16& historyTag) { return OK; }
     virtual status_t acquireWakeLockWithUid(const sp<IBinder>& lock, int flags, const String16& tag, const String16& packageName, int uidtoblame) { return OK; };
     virtual status_t releaseWakeLock(const sp<IBinder>& lock, int flags) { return OK; }
     virtual status_t updateWakeLockUids(const sp<IBinder>& lock, int uids) { return OK; }
     virtual status_t powerHint(int hintId, int data) { return OK; } 
+
+    // Used in 4.4 
+    virtual status_t updateWakeLockint(const sp<IBinder>& lock, int ws) { return OK; } 
+    // Used in 5.0 
     virtual status_t updateWakeLockint(const sp<IBinder>& lock, int ws, const String16& historyTag) { return OK; }
+
     virtual bool isWakeLockLevelSupported(int level) { return true; }
     virtual status_t userActivity(long time, int event, int flags) { return OK; }
     virtual status_t wakeUp(long time) { return OK; }
+    
+    // Used in 4.4
+    virtual status_t goToSleep(long time, int reason) { return OK; }
+    // Used in 5.0
     virtual status_t goToSleep(long time, int reason, int flags) { return OK; }
     virtual status_t nap(long time) { return OK; }
+    
+    // Used in 4.4
+    virtual bool isScreenOn() { return true; }
+     
     virtual bool isInteractive() { return false; }
     virtual bool isPowerSaveMode() { return false; }
     virtual bool setPowerSaveMode(bool mode) { return true; }
