@@ -92,6 +92,9 @@ public:
     virtual status_t setTemporaryScreenBrightnessSettingOverride(int brightness) { return OK; }
     virtual status_t setTemporaryScreenAutoBrightnessAdjustmentSettingOverride(float adj) { return OK; }
     virtual status_t setAttentionLight(bool on, int color) { return OK; }
+
+    // Used in 5.1
+    virtual status_t boostScreenBrightness(long time) { return OK; }
 };
 
 class SchedulingPolicyService : public BinderService<SchedulingPolicyService>, public BnSchedulingPolicyService
